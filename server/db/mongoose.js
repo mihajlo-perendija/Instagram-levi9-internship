@@ -14,6 +14,6 @@ mongoose.connect(uri, (err) => {
         } else {
             console.log('The Mongoose connection is ready');
         }
-};
+});
 
 module.exports = {mongoose}
