@@ -1,0 +1,12 @@
+<div class="container">
+    <div id="searchBarDiv">
+        <input type="text" [(ngModel)]="filter" name="filter" placeholder="filter">
+        <button type="button" class="btn btn-outline-dark" (click)="searchUsers()">Search</button>
+    </div>
+    <hr>
+    <div>
+        <app-user *ngFor="let user of users"
+            [user]="user"> </app-user>
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+.container {
+    margin-top: 20px;
+}
+
+#searchBarDiv {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+input {
+    padding: 5px;
+}
+
+button {
+    margin-bottom: 4px;
+}

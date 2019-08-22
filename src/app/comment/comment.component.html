@@ -1,0 +1,11 @@
+<div *ngIf="author">
+    <div class="container">
+        <img id="imgAvatar" [src]="author.imageUrl" alt="avatar">
+        <label id="name" (click)="showUserProfile()"> {{ author.name }} </label>
+        <label id="date" *ngIf="formatedDate"> {{ formatedDate }}</label>
+    </div>
+    <div id="text">
+        <p for="text" > {{ comment.text }}</p>
+    </div>
+</div>
+

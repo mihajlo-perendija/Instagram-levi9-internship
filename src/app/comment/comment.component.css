@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 420px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#imgAvatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 2px;
+    float: left;
+    margin-bottom: 5px;
+    object-fit: cover;
+}
+
+#name {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#date {
+    float: right;
+    margin-left: auto;
+}
+
+#textDiv {
+    width: 420px;
+    display: flex;
+    align-items: center;
+    /* display:inline; */
+}
+
+#text {
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 300;
+    word-break: break-word;
+}

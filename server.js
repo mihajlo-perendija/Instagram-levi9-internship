@@ -17,6 +17,9 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 

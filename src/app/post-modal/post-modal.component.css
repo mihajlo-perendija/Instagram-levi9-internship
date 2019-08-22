@@ -1,0 +1,21 @@
+#descAndComments {
+    overflow: auto;
+    max-height: 400px;
+    height: auto;
+}
+
+#description {
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 300;
+    word-break: break-word;
+}
+
+#hashtag {
+    cursor:pointer;
+    color:blue;
+}
+
+#comment {
+    padding: 6px;
+}

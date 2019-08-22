@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../services/posts.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+	selector: 'app-post-modal',
+	templateUrl: './post-modal.component.html',
+	styleUrls: ['./post-modal.component.css']
+})
+export class PostModalComponent implements OnInit {
+	postId: string;
+	post: any;
+	newComment: string;
+	done: boolean = false;
+	descWords: string[];
+
+	constructor(private postsService: PostsService,
+		private router: Router,
+		private modalService: NgbModal) { }
+
+	ngOnInit() {
+		this.getPostInfo();
+	}
+
+	getPostInfo() {
+		this.postsService.getSinglePost(this.postId)
+			.subscribe(
+				(data: any) => {
+					this.post = data.post;
+					this.post.comments.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1);
+					this.descWords = this.post.description.split(" ");
+				},
+				(error) => alert(error.text)
+			);
+	}
+
+	postComment() {
+		if (this.newComment) {
+			this.postsService.newComment(this.postId, this.newComment)
+				.subscribe(
+					(data: any) => {
+						this.post = data.post;
+						this.newComment = null;
+					},
+					(error) => alert(error.text)
+				);
+		} else {
+			alert("Comment can't be empty");
+		}
+	}
+
+	// checkForHashtags() {
+	// 	const hashtagRegex = /\#[a-zA-Z]+\b/g;
+	// 	this.post.description = this.post.description.replace(hashtagRegex, '<app-hashtag [hashtag]="$&"></app-hashtag>');
+	// 	this.done = true;
+	// }
+
+	showHashtagSearch(hashtag) {
+		// this.router.navigate(['/profile' , this.creator._id]);
+		// this.router.navigate(['/search-posts'], {state: {data: {hashtag}}});
+		// this.router.navigate(['/search-posts'], hashtag);
+		this.router.navigate(['/search-posts'], { queryParams: { filter: hashtag } });
+		this.modalService.dismissAll();
+	}
+
+	isHashtag(word) {
+		return word.charAt(0) === '#';
+	}
+
+}

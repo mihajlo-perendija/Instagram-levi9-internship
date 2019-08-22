@@ -1,0 +1,5 @@
+<div class="container .col-xs-8 .col-md-6 .col-lg-6" *ngIf="user">
+    <img id="imgAvatar" [src]="user.imageUrl" alt="avatar">
+    <label for="name"> {{ user.username }} </label>
+    <button type="button" class="btn btn-outline-dark" (click)="viewProfile()">View profile</button>
+</div>

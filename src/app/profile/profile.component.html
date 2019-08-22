@@ -1,0 +1,29 @@
+<div class="container" *ngIf="user">
+    <div class="row justify-content-center">
+        <div >
+            <img id="imgAvatar" [src]="user.imageUrl" alt="avatar">
+        </div>
+        <div >
+            <span id="usernameAndButton">
+                <label id="username"> {{ user.username }} </label>
+
+                <button type="button" *ngIf="following!==undefined" class="btn btn-outline-dark" (click)="follow()">
+                    <span *ngIf="!following">Follow</span>    
+                    <span *ngIf="following">Unfollow</span>    
+                </button>
+
+                <button type="button" class="btn btn-outline-dark" (click)="newPost()" *ngIf="following===undefined">New
+                    post</button>
+
+            </span>
+            <span>
+                <label id="name"> {{ user.name }} </label>
+            </span>
+        </div>
+    </div>
+
+</div>
+<hr>
+<div class="container-fluid row justify-content-center " id="posts" *ngIf="posts">
+    <app-post-preview *ngFor="let post of posts" [post]="post" [flag]="'preview'"></app-post-preview>
+</div>

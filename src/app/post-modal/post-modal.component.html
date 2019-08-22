@@ -1,0 +1,34 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> -->
+<div class="modal-body">
+    <app-post-preview *ngIf="post" [post]="post" [flag]="'full'"></app-post-preview>
+
+    <div id="descAndComments" *ngIf="post">
+        <div>
+            <div id="description">
+                <span *ngFor="let word of descWords">
+                    <ng-container *ngIf="isHashtag(word); else elseTemplate">
+                        <span id="hashtag" (click)="showHashtagSearch(word)">{{word}} </span>
+                    </ng-container>
+                    <ng-template #elseTemplate>{{word}}&nbsp;</ng-template>
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div id="comments">
+            <app-comment *ngFor="let comment of post.comments" [comment]="comment"></app-comment>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <textarea id="comment" rows="2" cols="50" [(ngModel)]="newComment" name="newComment"
+        placeholder="New comment">  </textarea>
+    <button type="button" class="btn btn-outline-dark" (click)="postComment()">Send</button>
+</div>
+
+<!-- [innerHTML]="post.description" -->

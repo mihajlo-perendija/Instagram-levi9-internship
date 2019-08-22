@@ -1,0 +1,20 @@
+#imgDiv {
+    width: 420px;
+    height: 500px;
+    margin: 5px;
+}
+
+#imagePreview {
+    object-fit: cover;
+    height: auto;
+    width: auto;
+    max-width: 420px;
+    max-height: 500px;
+    
+    border-radius: 4%;
+    margin-bottom: 10px;
+}
+
+#descDiv {
+    margin-top: 10px;
+}

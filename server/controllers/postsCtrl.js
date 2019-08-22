@@ -87,12 +87,12 @@ function uploadImage(req, res) {
     var imageName = req.body.name;
 
     // for deploy
-    var savePath = path.join(__dirname, `../../client/dist/client/assets/images/${imageName}`);  
+    var savePath = path.join(__dirname, `../../dist/Instagram-levi9-internship-heroku/assets/images/${imageName}`);  
     fs.writeFileSync(savePath, base64image, 'base64');
 
     // for developing
-    savePath = path.join(__dirname, `../../client/src/assets/images/${imageName}`);  
-    fs.writeFileSync(savePath, base64image, 'base64');
+    // savePath = path.join(__dirname, `../../client/src/assets/images/${imageName}`);  
+    // fs.writeFileSync(savePath, base64image, 'base64');
 
     res.send({});
 }

@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="imgDiv">
+        <img class="imagePreview img-fluid" [src]="imgSrc" alt="image" *ngIf="imgSrc">
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" accept=".jpg,.jpeg,.png"
+                name="image" (change)="handleFileInput($event.target.files)">
+            <label class="custom-file-label" for="inputGroupFile01"> {{ name }} </label>
+        </div>
+    </div>
+
+    <div id="descDiv" class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control rounded-0" id="description" rows="5" [(ngModel)]="description" name="description"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="createPost()">Create</button>
+</div>
