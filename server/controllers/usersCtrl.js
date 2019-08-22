@@ -1,4 +1,5 @@
 const {ObjectID} = require('mongodb');
+const _ = require('lodash');
 
 const {User} = require('../models/user');
 const {Post} = require('../models/post');
@@ -26,14 +27,15 @@ function login(req, res) {
 
 function registration(req, res) {
     var body = _.pick(req.body, ['username', 'password', 'name', 'imageUrl']);
-    var user = new User(body);
 
-    User.find({username: body.username}).then((user) => {
+    User.findOne({username: body.username}).then((user) => {
         if (user){
-            res.status(403).send({text: 'Username is already taken'});
+            return res.status(403).send({text: 'Username is already taken'});
         }
-        user.save().then((user) => {
-            res.send({user});
+        var newUser = new User(body);
+
+        newUser.save().then((newUser) => {
+            res.send({newUser});
         });
     }).catch((e) => res.status(400).send());
 
