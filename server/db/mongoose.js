@@ -5,7 +5,8 @@ mongoose.set('useCreateIndex', true);
 
 mongoose.Promise = global.Promise;
 
-const uri = "mongodb+srv://mihajlo:instagram-internship@instagram-internship-nzjce.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb://mihajlo:instagraminternship@instagram-internship-shard-00-00-nzjce.mongodb.net:27017,instagram-internship-shard-00-01-nzjce.mongodb.net:27017,instagram-internship-shard-00-02-nzjce.mongodb.net:27017/test?ssl=true&replicaSet=instagram-internship-shard-0&authSource=admin&retryWrites=true&w=majority";
+
 
 
 mongoose.connect(uri, (err) => {
