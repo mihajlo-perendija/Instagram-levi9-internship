@@ -81,7 +81,7 @@ function homePosts(req, res) {
 }
 
 // upload image
-// uploads to assets (NOT GOOD)
+// uploads to assets
 function uploadImage(req, res) {
     var base64image = req.body.base64image;
     var imageName = req.body.name;

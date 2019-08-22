@@ -85,9 +85,7 @@ export class PostsService {
             base64image,
             name
         }
-        let headers = new Headers();
-        headers.append('x-auth', `${this.usersService.token}`);
-        return this.http.post('https://instagram-internship.herokuapp.com/posts/uploadImage', data, { headers })
+        return this.http.post('https://instagram-internship.herokuapp.com/posts/uploadImage', data)
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
