@@ -66,6 +66,26 @@ export class UsersService {
             );
     }
 
+    registration(username: string, password: string, name: string, imageUrl: string) {
+        var user = {
+            username,
+            password,
+            name,
+            imageUrl
+        }
+        return this.http.post('https://instagram-internship.herokuapp.com/users/registration', user)
+            .pipe(
+                map((response: Response) => {
+                    const data = response.json();
+                    return data;
+                }),
+                catchError((error: Response) => {
+                    return throwError(JSON.parse(error.text()));
+                })
+            );
+
+    }
+
     getUserInfo(userId: string) {
         let headers = new Headers();
         headers.append('x-auth', `${this.token}`);

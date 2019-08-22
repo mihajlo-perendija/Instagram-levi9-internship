@@ -5,6 +5,7 @@ var usersCtrl = require('../controllers/usersCtrl');
 var {authenticate} = require('../middleware/authenticate');
 
 router.post('/login', usersCtrl.login);
+router.post('/registration', usersCtrl.registration);
 router.get('/informations', authenticate, usersCtrl.informations);
 router.get('/posts/:userId', authenticate, usersCtrl.posts);
 router.get('/search', usersCtrl.search);

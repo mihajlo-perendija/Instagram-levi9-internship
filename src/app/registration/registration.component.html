@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+        <div class="card-body">
+            <h5 class="card-title text-center">Create new account</h5>
+            <form class="form-signin">
+            <div class="form-label-group">
+                <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                <label for="inputUsername">Username</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm password" required>
+                <label for="inputPassword">Confirm password</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="text" [(ngModel)]="fullName" name="fullName" class="form-control" placeholder="Full name" required autofocus>
+                <label for="inputfullName">Full name</label>
+            </div>
+
+            <div class="imgDiv">
+                <img class="imagePreview img-fluid" [src]="imgSrc" alt="image" *ngIf="imgSrc">
+            </div>
+        
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Avatar</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" accept=".jpg,.jpeg,.png"
+                        name="image" (change)="handleFileInput($event.target.files)">
+                    <label class="custom-file-label" for="inputGroupFile01"> {{ name }} </label>
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+                (click)="onSubmit()">Sign Up</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

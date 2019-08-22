@@ -24,6 +24,21 @@ function login(req, res) {
     }).catch((e) => res.status(400).send());
 }
 
+function registration(req, res) {
+    var body = _.pick(req.body, ['username', 'password', 'name', 'imageUrl']);
+    var user = new User(body);
+
+    User.find({username: body.username}).then((user) => {
+        if (user){
+            res.status(403).send({text: 'Username is already taken'});
+        }
+        user.save().then((user) => {
+            res.send({user});
+        });
+    }).catch((e) => res.status(400).send());
+
+}
+
 // profile page: user name, avatar, list of posts and information if user is followed or not
 // Get user info
 // in: user id, logged in user id
@@ -139,6 +154,7 @@ function logout(req, res) {
 
 module.exports = {
     login,
+    registration,
     informations,
     posts,
     search,

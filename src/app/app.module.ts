@@ -20,6 +20,7 @@ import { NewPostComponent } from './profile/new-post/new-post.component';
 import { UsersService } from './services/users.service';
 import { PostsService } from './services/posts.service';
 import { SearchPostsComponent } from './search-posts/search-posts.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { SearchPostsComponent } from './search-posts/search-posts.component';
     UserComponent,
     ProfileComponent,
     NewPostComponent,
-    SearchPostsComponent
+    SearchPostsComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
