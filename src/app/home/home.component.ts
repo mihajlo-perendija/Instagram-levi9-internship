@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
 	ngOnInit() {
 		if (!this.usersService.checkLoggedIn())
 			this.router.navigate(['/login']);
-		this.getHomePosts();
+		else 
+			this.getHomePosts();
 	}
 
 	getHomePosts() {
