@@ -52,7 +52,7 @@ export class UsersService {
             username: username,
             password: password
         }
-        return this.http.post('http://127.0.0.1:3000/users/login', user)
+        return this.http.post('https://instagram-internship.herokuapp.com/users/login', user)
             .pipe(
                 map((response: Response) => {
                     this.token = response.headers.get('x-auth');
@@ -70,7 +70,7 @@ export class UsersService {
         let headers = new Headers();
         headers.append('x-auth', `${this.token}`);
 
-        return this.http.get('http://127.0.0.1:3000/users/informations', {
+        return this.http.get('https://instagram-internship.herokuapp.com/users/informations', {
             params: { 'userId': userId },
             headers
         })
@@ -89,7 +89,7 @@ export class UsersService {
         let headers = new Headers();
         headers.append('x-auth', `${this.token}`);
 
-        return this.http.get(`http://127.0.0.1:3000/users/posts/${userId}`, { headers })
+        return this.http.get(`https://instagram-internship.herokuapp.com/users/posts/${userId}`, { headers })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -102,7 +102,7 @@ export class UsersService {
     }
 
     searchUsers(filter: string) {
-        return this.http.get('http://127.0.0.1:3000/users/search/', { params: { filter } })
+        return this.http.get('https://instagram-internship.herokuapp.com/users/search/', { params: { filter } })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -117,7 +117,7 @@ export class UsersService {
     followUser(userId: string, flag: string) {
         let headers = new Headers();
         headers.append('x-auth', `${this.token}`);
-        return this.http.patch(`http://127.0.0.1:3000/users/follow/${flag}/${userId}`,
+        return this.http.patch(`https://instagram-internship.herokuapp.com/users/follow/${flag}/${userId}`,
             {}, { headers })
             .pipe(
                 map((response: Response) => {
@@ -134,7 +134,7 @@ export class UsersService {
         let headers = new Headers();
         headers.append('x-auth', `${this.token}`);
 
-        return this.http.delete('http://127.0.0.1:3000/users/logout', { headers })
+        return this.http.delete('https://instagram-internship.herokuapp.com/users/logout', { headers })
             .pipe(
                 catchError((error: Response) => {
                     return throwError(error);

@@ -18,7 +18,7 @@ export class PostsService {
         let headers = new Headers();
         headers.append('x-auth', `${this.usersService.token}`);
 
-        return this.http.get(`http://127.0.0.1:3000/posts/home`, { headers })
+        return this.http.get(`https://instagram-internship.herokuapp.com/posts/home`, { headers })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -31,7 +31,7 @@ export class PostsService {
     }
 
     getSinglePost(postId: string) {
-        return this.http.get(`http://127.0.0.1:3000/posts/single/${postId}`)
+        return this.http.get(`https://instagram-internship.herokuapp.com/posts/single/${postId}`)
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -46,7 +46,7 @@ export class PostsService {
     newComment(postId: string, text: string) {
         let headers = new Headers();
         headers.append('x-auth', `${this.usersService.token}`);
-        return this.http.patch(`http://127.0.0.1:3000/posts/comment/${postId}`,
+        return this.http.patch(`https://instagram-internship.herokuapp.com/posts/comment/${postId}`,
             { 'text': text }, { headers })
             .pipe(
                 map((response: Response) => {
@@ -68,7 +68,7 @@ export class PostsService {
         }
         let headers = new Headers();
         headers.append('x-auth', `${this.usersService.token}`);
-        return this.http.post('http://127.0.0.1:3000/posts/newPost', data, { headers })
+        return this.http.post('https://instagram-internship.herokuapp.com/posts/newPost', data, { headers })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -87,7 +87,7 @@ export class PostsService {
         }
         let headers = new Headers();
         headers.append('x-auth', `${this.usersService.token}`);
-        return this.http.post('http://127.0.0.1:3000/posts/uploadImage', data, { headers })
+        return this.http.post('https://instagram-internship.herokuapp.com/posts/uploadImage', data, { headers })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
@@ -100,7 +100,7 @@ export class PostsService {
     }
 
     searchPosts(filter: string) {
-        return this.http.get('http://127.0.0.1:3000/posts/search', { params: { filter } })
+        return this.http.get('https://instagram-internship.herokuapp.com/posts/search', { params: { filter } })
             .pipe(
                 map((response: Response) => {
                     const data = response.json();
