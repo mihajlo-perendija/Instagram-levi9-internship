@@ -93,8 +93,8 @@ function uploadImage(req, res) {
     fs.writeFileSync(savePath, base64image, 'base64');
 
     // for developing
-    // savePath = path.join(__dirname, `../../client/src/assets/images/${imageName}`);  
-    // fs.writeFileSync(savePath, base64image, 'base64');
+    savePath = path.join(__dirname, `../../src/assets/images/${imageName}`);  
+    fs.writeFileSync(savePath, base64image, 'base64');
 
     res.send({});
 }
