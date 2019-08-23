@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { RegistrationComponent } from './registration/registration.component';
     FormsModule,
     HttpModule,
     NgbModalModule,
+    NgxSpinnerModule
     //HttpClient
   ],
   providers: [UsersService, PostsService, PostModalComponent, CookieService],

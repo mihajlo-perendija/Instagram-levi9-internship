@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PostModalComponent } from '../post-modal/post-modal.component';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
+
 
 @Component({
 	selector: 'app-post-preview',
@@ -13,8 +14,10 @@ export class PostPreviewComponent implements OnInit {
 	@Input() post: any;
 	@Input() flag: any;
 	formatedDate: string;
-
 	creator: any;
+
+	@Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
+
 
 	constructor(private usersService: UsersService,
 		private modalService: NgbModal,
@@ -29,8 +32,14 @@ export class PostPreviewComponent implements OnInit {
 		this.formatedDate = new Date(this.post.createdAt).toLocaleDateString("en-GB");
 		this.usersService.getUserInfo(this.post.owner)
 			.subscribe(
-				(data: any) => this.creator = data.user,
-				(error) => alert(error.text)
+				(data: any) => {
+					this.creator = data.user;
+					this.dataLoaded.emit();
+				},
+				(error) => {
+					this.dataLoaded.emit();
+					alert(error.text);
+				}
 			);
 	}
 

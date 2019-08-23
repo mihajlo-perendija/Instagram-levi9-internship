@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsersService } from '../services/users.service';
+
 
 @Component({
 	selector: 'app-comment',
@@ -12,6 +13,9 @@ export class CommentComponent implements OnInit {
 	@Input() comment: any;
 	author: any;
 	formatedDate: any;
+
+	@Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
+
 
 	constructor(private usersService: UsersService,
 		private router: Router,
@@ -25,10 +29,17 @@ export class CommentComponent implements OnInit {
 
 	getAuthorInfo() {
 		if (this.usersService.checkLoggedIn()) {
+
 			this.usersService.getUserInfo(this.comment.author)
 				.subscribe(
-					(data: any) => this.author = data.user,
-					(error) => alert(error.text)
+					(data: any) => {
+						this.author = data.user;
+						this.dataLoaded.emit();
+					},
+					(error) => {
+						this.dataLoaded.emit();
+						alert(error.text);
+					}
 				);
 		}
 	}

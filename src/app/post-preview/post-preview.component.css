@@ -17,7 +17,7 @@
     margin: 12px;
     padding: 5px;
 
-    width: auto;
+    width: 100%;
     overflow: hidden;
     position: relative;
     height: auto;
@@ -60,9 +60,14 @@
     cursor: pointer;
 }
 
-#date {
+#date-post-preview {
     float: right;
     margin-left: auto;
+}
+
+#date-post-full {
+    float: right;
+    margin-right: 22px;
 }
 
 #imgDiv-post-preview {
@@ -81,16 +86,21 @@
 }
 
 #imgDiv-post-full {
-    width: 420px;
-    height: 500px;
+    max-width: 420px;
+    max-height: 500px;
+    width: 100%;
+
     vertical-align: middle;
     margin: 5px;
 }
   
 #mainImg-post-full {
     object-fit: cover;
-    width: 420px;
-    height: 500px;
+
+    max-width: 420px;
+    max-height: 500px;
+    width: 100%;
+
     cursor: auto;
     border-radius: 4%;
 }

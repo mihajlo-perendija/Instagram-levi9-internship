@@ -15,7 +15,6 @@ export class UsersService {
         private http: Http) { }
 
     checkLoggedIn() {
-        // this.user =JSON.parse(localStorage.getItem('user'));
         if (this.cookieService.get('user')) {
             this.user = JSON.parse(this.cookieService.get('user'));
             this.token = JSON.parse(this.cookieService.get('token'));
@@ -27,8 +26,6 @@ export class UsersService {
         this.user = user;
         this.cookieService.set('user', JSON.stringify(user));
         this.cookieService.set('token', JSON.stringify(this.token));
-
-        // localStorage.setItem('user', JSON.stringify(user));
     }
 
     removeUser() {
@@ -36,8 +33,6 @@ export class UsersService {
         this.token = null;
         this.cookieService.delete('user');
         this.cookieService.delete('token');
-
-        // localStorage.removeItem('user');
     }
 
     getUserId() {

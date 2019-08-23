@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { UsersService } from '../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
 	selector: 'app-search-posts',
@@ -15,11 +17,16 @@ export class SearchPostsComponent implements OnInit {
 	constructor(private usersService: UsersService,
 		private postsService: PostsService,
 		private route: ActivatedRoute,
-		private router: Router) { }
+		private router: Router,
+		private spinner: NgxSpinnerService) { }
 
 	ngOnInit() {
-		this.usersService.checkLoggedIn();
+		if (!this.usersService.checkLoggedIn())
+			return this.router.navigate(['/login']);
+
 		this.route.queryParams.subscribe((queryParams) => {
+			this.spinner.show();
+
 			if (queryParams.filter || queryParams.filter === "") {
 				this.filter = queryParams.filter;
 			}
@@ -35,8 +42,14 @@ export class SearchPostsComponent implements OnInit {
 	searchPosts() {
 		this.postsService.searchPosts(this.filter)
 			.subscribe(
-				(data: any) => this.posts = data.posts,
-				(error) => alert(error.text)
+				(data: any) => {
+					this.posts = data.posts;
+					this.spinner.hide();
+				},
+				(error) => {
+					alert(error.text);
+					this.spinner.hide();
+				}
 			);
 	}
 

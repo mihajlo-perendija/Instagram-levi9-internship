@@ -25,6 +25,9 @@ function login(req, res) {
     }).catch((e) => res.status(400).send()); 
 }
 
+// Registration
+// in: username, password, name, imageUrl
+// out: new user
 function registration(req, res) {
     var body = _.pick(req.body, ['username', 'password', 'name', 'imageUrl']);
 

@@ -1,4 +1,7 @@
 <div class="container-fluid row justify-content-center">
-    <app-post-preview *ngFor="let post of posts"
-        [post]="post" [flag]="'preview'"></app-post-preview>
+    <app-post-preview *ngFor="let post of posts" [post]="post" [flag]="'preview'"></app-post-preview>
 </div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.2)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

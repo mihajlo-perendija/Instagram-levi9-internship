@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewPostComponent } from './new-post/new-post.component';
-import { PostsService } from '../services/posts.service';
 import { UsersService } from '../services/users.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
 	selector: 'app-profile',
@@ -16,11 +17,17 @@ export class ProfileComponent implements OnInit {
 	posts: any[];
 
 	constructor(private route: ActivatedRoute,
+		private router: Router,
 		private usersService: UsersService,
-		private modalService: NgbModal) { }
+		private modalService: NgbModal,
+		private spinner: NgxSpinnerService) { }
 
 	ngOnInit() {
+		if (!this.usersService.checkLoggedIn())
+			return this.router.navigate(['/login']);
+
 		this.route.params.subscribe((routeParams) => {
+			this.spinner.show();
 
 			let userId = routeParams.id;
 			if (userId && this.usersService.checkLoggedIn()) {
@@ -38,6 +45,7 @@ export class ProfileComponent implements OnInit {
 						},
 						(error) => {
 							alert(error.text);
+							this.spinner.hide();
 						}
 					);
 			}
@@ -47,8 +55,14 @@ export class ProfileComponent implements OnInit {
 	loadPosts() {
 		this.usersService.getUserPosts(this.user._id)
 			.subscribe(
-				(data: any) => this.posts = data.posts,
-				(error) => alert(error.text)
+				(data: any) => {
+					this.posts = data.posts;
+					this.spinner.hide();
+				},
+				(error) => {
+					alert(error.text);
+					this.spinner.hide();
+				}
 			);
 	}
 

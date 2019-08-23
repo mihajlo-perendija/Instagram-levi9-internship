@@ -62,7 +62,7 @@ export class NewPostComponent implements OnInit {
 			var reader2 = new FileReader();
 			reader2.readAsDataURL(this.fileToUpload);
 			if (this.fileToUpload.size/1024 > 70){
-				alert("Image to big");
+				alert("Image to big. Max size 70KB.");
 				this.imageSizeOk = false;
 			} else {
 				this.imageSizeOk = true;

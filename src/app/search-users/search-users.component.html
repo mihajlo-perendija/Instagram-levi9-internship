@@ -5,8 +5,11 @@
     </div>
     <hr>
     <div>
-        <app-user *ngFor="let user of users"
-            [user]="user"> </app-user>
+        <app-user *ngFor="let user of users" [user]="user"> </app-user>
     </div>
 
 </div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.2)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

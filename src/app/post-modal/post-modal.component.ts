@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
 	selector: 'app-post-modal',
@@ -15,12 +17,17 @@ export class PostModalComponent implements OnInit {
 	done: boolean = false;
 	descWords: string[];
 
+	postInfoLoaded = false;
+	commentsInfoLoaded = 0;
+
 	constructor(private postsService: PostsService,
 		private router: Router,
-		private modalService: NgbModal) { }
+		private modalService: NgbModal,
+		private spinner: NgxSpinnerService) { }
 
 	ngOnInit() {
 		this.getPostInfo();
+		setTimeout(() => this.spinner.show(), 0);
 	}
 
 	getPostInfo() {
@@ -31,7 +38,10 @@ export class PostModalComponent implements OnInit {
 					this.post.comments.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1);
 					this.descWords = this.post.description.split(" ");
 				},
-				(error) => alert(error.text)
+				(error) => {
+					this.spinner.hide();
+					alert(error.text);
+				}
 			);
 	}
 
@@ -43,29 +53,38 @@ export class PostModalComponent implements OnInit {
 						this.post = data.post;
 						this.newComment = null;
 					},
-					(error) => alert(error.text)
+					(error) => {
+						alert(error.text);
+					}
 				);
 		} else {
 			alert("Comment can't be empty");
 		}
 	}
 
-	// checkForHashtags() {
-	// 	const hashtagRegex = /\#[a-zA-Z]+\b/g;
-	// 	this.post.description = this.post.description.replace(hashtagRegex, '<app-hashtag [hashtag]="$&"></app-hashtag>');
-	// 	this.done = true;
-	// }
-
 	showHashtagSearch(hashtag) {
-		// this.router.navigate(['/profile' , this.creator._id]);
-		// this.router.navigate(['/search-posts'], {state: {data: {hashtag}}});
-		// this.router.navigate(['/search-posts'], hashtag);
 		this.router.navigate(['/search-posts'], { queryParams: { filter: hashtag } });
 		this.modalService.dismissAll();
 	}
 
 	isHashtag(word) {
 		return word.charAt(0) === '#';
+	}
+
+	postLoaded(){
+		this.postInfoLoaded = true;
+		this.checkLoadedAll();
+	}
+
+	commentLoaded(){
+		this.commentsInfoLoaded++;
+		this.checkLoadedAll();
+	}
+
+	checkLoadedAll(){
+		if (this.postInfoLoaded && this.commentsInfoLoaded === this.post.comments.length){
+			this.spinner.hide();
+		}
 	}
 
 }

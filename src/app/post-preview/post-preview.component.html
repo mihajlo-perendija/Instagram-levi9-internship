@@ -1,12 +1,14 @@
 <div class="container col " [id]="flag==='preview' ? 'mainDiv-post-preview': 'mainDiv-post-full'">
-    <div id="header" *ngIf="creator">
-        <img id="imgAvatar" [src]="creator.imageUrl" alt="avatar" (click)="showUserProfile()">
-        <label id="name" (click)="showUserProfile()"> {{ creator.name }} </label>
-        <label id="date" *ngIf="formatedDate"> {{ formatedDate }}</label>
-    </div>
-    <div [id]="flag==='preview' ? 'imgDiv-post-preview': 'imgDiv-post-full'">
-        <img [id]="flag==='preview' ? 'mainImg-post-preview': 'mainImg-post-full'" [src]="post.imageUrl" alt="image" (click)="open()"> 
-    </div>
+	<div id="header" *ngIf="creator">
+		<img id="imgAvatar" [src]="creator.imageUrl" alt="avatar" (click)="showUserProfile()">
+		<label id="name" (click)="showUserProfile()"> {{ creator.name }} </label>
+		<label [id]="flag==='preview' ? 'date-post-preview': 'date-post-full'" *ngIf="formatedDate">
+			{{ formatedDate }}</label>
+	</div>
+	<div [id]="flag==='preview' ? 'imgDiv-post-preview': 'imgDiv-post-full'">
+		<img [id]="flag==='preview' ? 'mainImg-post-preview': 'mainImg-post-full'" class="img-responsive"
+			[src]="post.imageUrl" alt="image" (click)="open()">
+	</div>
 </div>
 
-<!-- [src]="creator.imageUrl | async"     id="mainImg" -->
+
