@@ -87,7 +87,9 @@ function uploadImage(req, res) {
     var imageName = req.body.name;
 
     // for deploy
-    var savePath = path.join(__dirname, `../../dist/Instagram-levi9-internship-heroku/assets/images/${imageName}`);  
+    var savePath = path.join(__dirname, `../../dist/assets/images/${imageName}`);  
+    // /Instagram-levi9-internship-heroku
+    console.log(savePath);
     fs.writeFileSync(savePath, base64image, 'base64');
 
     // for developing
