@@ -81,7 +81,7 @@ function homePosts(req, res) {
 }
 
 // upload image
-// uploads to assets
+// uploads to assets (Should change to AWS S3)
 function uploadImage(req, res) {
     var base64image = req.body.base64image;
     var imageName = req.body.name;
@@ -93,8 +93,8 @@ function uploadImage(req, res) {
     fs.writeFileSync(savePath, base64image, 'base64');
 
     // for developing
-    savePath = path.join(__dirname, `../../src/assets/images/${imageName}`);  
-    console.log(savePath);
+    // savePath = path.join(__dirname, `../../src/assets/images/${imageName}`);  
+    // console.log(savePath);
 
     fs.writeFileSync(savePath, base64image, 'base64');
 
